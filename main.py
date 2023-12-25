@@ -1,20 +1,13 @@
-'''
-Program will create and query the mysql database astronauts database
-Author: Greg Schaper
-Modified By: <Francisco Figueroa>
-'''
+
 import mysql.connector
 
 
-# function creates the connection to mysql and returns the connection variable cnx
-# and the cursor variable used access the database.
 def connectToMySQL():
     cnx = mysql.connector.connect(password='project', user='project')
     cursor = cnx.cursor()
     return cursor, cnx
 
 
-# function creates the astronaut database passed as the parameter DB_NAME
 def createDatabase(cursor, DB_NAME):
     '''
     :param cursor: instance of the connection to the database
@@ -35,7 +28,6 @@ def createDatabase(cursor, DB_NAME):
         exit(1)
 
 
-# Reads the criminals.txt file first line and uses the file header to create the criminal table.
 def makeTable(cursor):
     infile = open("criminals.txt", "r")
     line = infile.readline()
@@ -77,7 +69,6 @@ def insertData(cursor):
     print("2. Incident data inserted into Incident table")
 
 
-# create a dictionary name queries that has the question letter as the key and stores
 # the question and the query associated with that key as a list of 2 strings
 def createQueries():
     queries = {}
@@ -94,7 +85,6 @@ def createQueries():
     return queries
 
 
-# Issues the query for question A and writes the resulting information to result.txt
 def questionA(cursor, outfile, queries):
     question = 'a'
     print(question, queries[question][0], sep='. ', file=outfile)
